@@ -1,0 +1,58 @@
+# On bloque l'accés au fichier .htaccess
+<Files .htaccess>
+    order allow,deny
+    deny from all
+</Files>
+<Files .config>
+    order allow,deny
+    deny from all
+</Files>
+<IfModule mod_rewrite.c>
+    # On bloque l'accés au répertoire du site
+    Options All -Indexes
+    # On utilise le module +FollowSymlinks, présent sur le serveur.
+    Options +FollowSymlinks
+    # Active ou désactive la réécriture d'url (on -> active la réécriture)
+    RewriteEngine On
+    ErrorDocument 403 /403.php
+    ErrorDocument 404 /404.php
+    ErrorDocument 500 /500.php
+    # Permet la réécriture des pages urls
+    RewriteRule ^/$ index.php [L]
+    RewriteRule ^Article-page([0-9]+)$ index.php?page=$1 [L]
+    RewriteRule ^Nouveau-mdp-([0-9]+)$ passwordNewUser.php?keyUser=$1 [L]
+    RewriteRule ^Recuperation-mdp-([0-9]+)$ recoveryPassword.php?keyUser=$1 [L]
+    RewriteRule ^Article-([0-9]+)$ articleHome.php?art=$1 [L]
+    RewriteRule ^Pages-([0-9]+)$ index.php?paReh=$1 [L]
+    RewriteRule ^Page-([0-9]+)$ pageHome.php?idRe=$1 [L]
+
+    RewriteRule ^Modification-profile$ backOffice/updateProfile.php [L]
+    RewriteRule ^Profile$ backOffice/profile.php [L]
+    RewriteRule ^Profile-status-(['A-Za-zé']+)-utilisateur-([0-9]+)$ backOffice/profile.php?upUs=$1&idUs=$2 [L]
+    #Tâches
+    RewriteRule ^Taches$ backOffice/taches.php [L]
+    RewriteRule ^Ajout-Volontaire-Tache-([0-9]+)$ backOffice/taches.php?addVo=$1 [L]
+    RewriteRule ^Modification-status-tache-([0-9]+)$ backOffice/taches.php?upStatus=$1 [L]
+    RewriteRule ^Desistement-([0-9]+)$ backOffice/taches.php?idTas=$1 [L]
+    RewriteRule ^Changement-tache-([0-9]+)$ backOffice/changing.php?upTas=$1 [L]
+    #Évennements
+    RewriteRule ^Evennements$ backOffice/evennements.php [L]
+    RewriteRule ^Profile-ajout-participant-([0-9]+)$ backOffice/evennements.php?addPar=$1 [L]
+    RewriteRule ^Desistement-evennements-([0-9]+)$ backOffice/evennements.php?idEvent=$1 [L]
+    RewriteRule ^Changement-evenement-([0-9]+)$ backOffice/changing.php?upEv=$1 [L]
+    RewriteRule ^Changement-evenement-([0-9]+)-fichier-(['A-Za-z0-9ÉÈÀÊÀÙÎÏÜËéèàêâùïüë\-_.()\ ']+)$ backOffice/changing.php?upEv=$1&path=$2 [L]
+    #Articles
+    RewriteRule ^Articles$ backOffice/articles.php [L]
+    RewriteRule ^Suppression-actualite-([0-9]+)$ backOffice/articles.php?delAct=$1 [L]
+    RewriteRule ^Page-actualité-([0-9]+)$ backOffice/articles.php?paPro=$1 [L]
+    RewriteRule ^Changement-article-([0-9]+)$ backOffice/changing.php?chanArt=$1 [L]
+    RewriteRule ^Moderation-commentaire([0-9]+)$ backOffice/validationComment.php?va=$1 [L]
+    #Pages
+    RewriteRule ^Pages$ backOffice/pages.php [L]
+    RewriteRule ^Page-profile-([0-9]+)$ backOffice/pages.php?paRea=$1 [L]
+    RewriteRule ^Changement-lecture-([0-9]+)$ backOffice/changing.php?upRea=$1 [L]
+
+    RewriteRule ^403$ 403.php [L]
+    RewriteRule ^404$ 404.php [L]
+    RewriteRule ^500$ 500.php [L]
+</IfModule>

@@ -1,0 +1,26 @@
+{
+  "name": "BDM",
+  "homepage": "https://github.com/MaximeDEFRETIN/BDM",
+  "authors": [
+    "Maxime Defretin <maxime.defretin@laposte.net>"
+  ],
+  "description": "CMS",
+  "main": "",
+  "keywords": [
+    "CMS",
+    "Logiciel",
+    "libre",
+    "BDM"
+  ],
+  "license": "GPL3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "materialize": "^0.100.2"
+  }
+}

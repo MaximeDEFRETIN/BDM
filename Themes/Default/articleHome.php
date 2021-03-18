@@ -1,7 +1,7 @@
 <?php
 require_once 'headerHome.php';
 
-require_once 'controllers/articleHome-Controller.php';
+require_once '../../controllers/articleHome-Controller.php';
 ?>
 <?php
 $message = array($messageAnswer, $messageComment);

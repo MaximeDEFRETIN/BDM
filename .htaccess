@@ -14,17 +14,17 @@
     Options +FollowSymlinks
     # Active ou désactive la réécriture d'url (on -> active la réécriture)
     RewriteEngine On
-    ErrorDocument 403 /403.php
-    ErrorDocument 404 /404.php
-    ErrorDocument 500 /500.php
+    ErrorDocument 403 Themes/Default/403.php
+    ErrorDocument 404 Themes/Default/404.php
+    ErrorDocument 500 Themes/Default/500.php
     # Permet la réécriture des pages urls
     RewriteRule ^/$ index.php [L]
     RewriteRule ^Article-page([0-9]+)$ index.php?page=$1 [L]
-    RewriteRule ^Nouveau-mdp-([0-9]+)$ passwordNewUser.php?keyUser=$1 [L]
-    RewriteRule ^Recuperation-mdp-([0-9]+)$ recoveryPassword.php?keyUser=$1 [L]
-    RewriteRule ^Article-([0-9]+)$ articleHome.php?art=$1 [L]
+    RewriteRule ^Nouveau-mdp-([0-9]+)$ Themes/Default/passwordNewUser.php?keyUser=$1 [L]
+    RewriteRule ^Recuperation-mdp-([0-9]+)$ Themes/Default/recoveryPassword.php?keyUser=$1 [L]
+    RewriteRule ^Article-([0-9]+)$ Themes/Default/articleHome.php?art=$1 [L]
     RewriteRule ^Pages-([0-9]+)$ index.php?paReh=$1 [L]
-    RewriteRule ^Page-([0-9]+)$ pageHome.php?idRe=$1 [L]
+    RewriteRule ^Page-([0-9]+)$ Themes/Default/pageHome.php?idRe=$1 [L]
 
     RewriteRule ^Modification-profile$ backOffice/updateProfile.php [L]
     RewriteRule ^Profile$ backOffice/profile.php [L]
@@ -52,7 +52,7 @@
     RewriteRule ^Page-profile-([0-9]+)$ backOffice/pages.php?paRea=$1 [L]
     RewriteRule ^Changement-lecture-([0-9]+)$ backOffice/changing.php?upRea=$1 [L]
 
-    RewriteRule ^403$ 403.php [L]
-    RewriteRule ^404$ 404.php [L]
-    RewriteRule ^500$ 500.php [L]
+    RewriteRule ^403$ Themes/Default/403.php [L]
+    RewriteRule ^404$ Themes/Default/404.php [L]
+    RewriteRule ^500$ Themes/Default/500.php [L]
 </IfModule>

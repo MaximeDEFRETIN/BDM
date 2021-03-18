@@ -1,7 +1,7 @@
 <?php
 require_once 'headerHome.php';
 
-require_once 'controllers/pages-Controller.php';
+require_once '../../controllers/pages-Controller.php';
 ?>
 <div class="fixed-action-btn"><a href="/" class="btn" title="Accueil">Accueil</a></div>
 <?php foreach($displayReaded as $display) { ?>

@@ -1,7 +1,7 @@
 <?php
 include_once 'headerHome.php';
 
-include_once 'controllers/replacePasseword-Controller.php';
+include_once '../../controllers/replacePasseword-Controller.php';
 ?>
 <h1 class="center-align">Récupération du mot de passe</h1>
 <form id="formPasswordNewUser" name="formPasswordNewUser" method="POST" class="marginBottomMin">

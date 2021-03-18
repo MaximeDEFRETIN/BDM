@@ -2,7 +2,7 @@
 // Temporise les données afin qu'elle ne soient pas envoyé immédiatement
 ob_start();
 
-// On instancie un objet
+//// On instancie un objet
 $userConnection = new user();
 // $connectionMessage sert à stocker les messages destiné à l'utilisateur
 $connectionMessage = array();
@@ -61,3 +61,38 @@ if (isset($_POST['submitConnection'])) {
 
 // Envoie les données temporisées et met fin à la temporisation des données
 ob_end_flush();
+
+//$connectionMessage = array();
+//if (isset($_POST['mailConnection'])) {
+//    session_start();
+//    require_once '../models/dataBase.php';
+//    require_once '../models/user.php';
+//    $userConnection = new user();
+//    if (filter_var($_POST['mailConnection'], FILTER_VALIDATE_EMAIL)) {
+//        $userConnection->mail = $_POST['mailConnection'];
+//        $userConnection->getUserByMail();
+//    } else {
+//        echo $connectionMessage = 'Ce n\'est pas un mail';
+//    }
+//
+//    if (!empty($_POST['passwordConnection'])) {
+//        if (!password_verify($_POST['passwordConnection'], $userConnection->password)) {
+//            echo $connectionMessage = 'Le mot de passe est faux.';
+//        }
+//    } else {
+//        echo $connectionMessage = 'Pas de mot de passe.';
+//    }
+//
+//    if (empty($connectionMessage)) {
+//        
+//        session_start();
+//
+//        $_SESSION['id'] = $userConnection->id;
+//        $_SESSION['last_name'] = $userConnection->last_name;
+//        $_SESSION['first_name'] = $userConnection->first_name;
+//        $_SESSION['mail'] = $userConnection->mail;
+//        $_SESSION['status_user'] = $userConnection->status_user;
+//        
+//        echo json_encode($_SESSION);
+//    }
+//}

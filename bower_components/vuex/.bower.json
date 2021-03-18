@@ -1,15 +1,14 @@
 {
   "name": "vuex",
   "homepage": "https://github.com/vuejs/vuex",
-  "version": "3.5.1",
-  "_release": "3.5.1",
+  "version": "3.6.2",
+  "_release": "3.6.2",
   "_resolution": {
     "type": "version",
-    "tag": "v3.5.1",
-    "commit": "6b0014cada1bfc249c46322810a8256088d83d40"
+    "tag": "v3.6.2",
+    "commit": "9039c2169634925682ffcb21c57f5df355e16ad1"
   },
   "_source": "https://github.com/vuejs/vuex.git",
   "_target": "^3.5.1",
-  "_originalSource": "vuex",
-  "_direct": true
+  "_originalSource": "vuex"
 }

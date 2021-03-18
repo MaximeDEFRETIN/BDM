@@ -33,4 +33,3 @@ if (isset($_POST['submitNewUser'])) {
         $passwordNewUserArray['wrongMail'] = 'Ton addresse mail n\'est pas enregistré.';
     }
 }
-?>

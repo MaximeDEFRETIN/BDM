@@ -31,4 +31,4 @@
         </ul>
     </div>
 </div>
-<?php require_once 'footerHome.php';
+<?php require_once 'Themes/Default/footerHome.php';

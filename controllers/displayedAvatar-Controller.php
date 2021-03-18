@@ -7,4 +7,3 @@ if ($_SESSION['id']) {
     $avatarProfile->id_agdjjg_user = $_SESSION['id'];
     $avatarDisplayed = $avatarProfile->getAvatarById();
 }
-?>

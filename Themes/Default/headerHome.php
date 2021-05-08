@@ -1,15 +1,26 @@
 <?php
-// include_once permet d'inclure les models et les contrôleurs si ils n'ont pas déjà été inclus
-// On inclus les models
-require_once '../../models/dataBase.php';
-require_once '../../models/user.php';
-require_once '../../models/pages.php';
-require_once '../../models/articles.php';
-require_once '../../models/comment_article.php';
-require_once '../../controllers/connection-Controller.php';
-require_once '../../controllers/mailRecoveryPassword-Controller.php';
-require_once '../../controllers/Home-Controller.php';
-require_once '../../controllers/commentArticle-Controller.php';
+$pageCourrante = $_SERVER['PHP_SELF'];
+var_dump($pageCourrante);
+//function findPath($pageCourrante) {
+    $tableauFichier = array_values(array_diff(scandir($_SERVER['DOCUMENT_ROOT'].'/Themes/Default'), array('..', '.')));
+    var_dump($tableauFichier);
+//}
+    
+require_once ($_SERVER['PHP_SELF']=='/index.php')?'models/dataBase.php':'../../models/dataBase.php';
+require_once ($_SERVER['PHP_SELF']=='/index.php')?'models/user.php':'../../models/user.php';
+require_once ($_SERVER['PHP_SELF']=='/index.php')?'models/pages.php':'../../models/pages.php';
+require_once ($_SERVER['PHP_SELF']=='/index.php')?'models/articles.php':'../../models/articles.php';
+require_once ($_SERVER['PHP_SELF']=='/index.php')?'controllers/connection-Controller.php':'../../controllers/connection-Controller.php';
+require_once ($_SERVER['PHP_SELF']=='/index.php')?'controllers/mailRecoveryPassword-Controller.php':'../../controllers/mailRecoveryPassword-Controller.php';
+require_once ($_SERVER['PHP_SELF']=='/index.php')?'controllers/Home-Controller.php':'../../controllers/Home-Controller.php';
+//
+//var_dump($_SERVER['SCRIPT_FILENAME']);
+//var_dump($_SERVER['PHP_SELF']);
+//var_dump($_SERVER['DOCUMENT_ROOT']);
+//var_dump($_SERVER['REQUEST_URI']);
+//var_dump($_SERVER['PHP_SELF']=='/index.php');
+//
+//var_dump(array_values(array_diff(scandir($_SERVER['DOCUMENT_ROOT'].'/Themes/Default'), array('..', '.'))));
 ?>
 <!DOCTYPE html>
 <html>

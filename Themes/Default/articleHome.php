@@ -1,14 +1,16 @@
 <?php
 require_once 'headerHome.php';
 
+require_once '../../models/comment_article.php';
 require_once '../../controllers/articleHome-Controller.php';
+require_once '../../controllers/commentArticle-Controller.php';
 ?>
 <?php
 $message = array($messageAnswer, $messageComment);
     foreach ($message as $simpleMessage) { ?>
         <p class="center-align "><?= implode($simpleMessage) ?></p>
     <?php } ?>
-    <div class="fixed-action-btn"><a href="Accueil" class="btn" title="Accueil">Accueil</a></div>
+    <div class="fixed-action-btn"><a href="/" class="btn" title="Accueil">Accueil</a></div>
     <?php foreach($displayArticle as $display) { ?>
         <article title="Article - <?= $display->title ?>" class="container marginBottomMin marginTopMin article">
             <h4><?= $display->title ?></h4>

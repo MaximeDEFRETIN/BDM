@@ -18,3 +18,5 @@ $('#display').click(function() {
             'JSON',
            );
 });
+
+console.log('LOLILOL Réponse aux commentaires');

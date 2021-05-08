@@ -1,8 +1,9 @@
 <?php
-include_once 'headerHome.php';
+require_once 'headerHome.php';
 
-include_once '../../controllers/replacePasseword-Controller.php';
+require_once '../../controllers/replacePasseword-Controller.php';
 ?>
+<div class="fixed-action-btn"><a href="/" class="btn" title="Accueil">Accueil</a></div>
 <h1 class="center-align">Récupération du mot de passe</h1>
 <form id="formPasswordNewUser" name="formPasswordNewUser" method="POST" class="marginBottomMin">
     <div class="col s6 offset-s3 input-field inline">
@@ -14,4 +15,4 @@ include_once '../../controllers/replacePasseword-Controller.php';
 <?php foreach ($replacePasswordMessage as $display) { ?>
     <p class="amber lighten-4 center-align col s10 offset-s1"><?= $display ?></p>
 <?php } ?>
-<?php include_once 'footerHome.php'; ?>
+<?php require_once 'footerHome.php';

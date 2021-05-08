@@ -1,0 +1,14 @@
+{
+    "Nom":"Thème par default",
+    "Auteur":"Maxime Defretin",
+    "Version":"1.0",
+    "Description":"C'est le thème par défaut pour le CMS.",
+    "Fichiers":{
+        "PHP": ["403.php", "404.php", "500.php", "articleHome.php", "footerHome.php", "headerHome.php", "pageHome.php", "passwordNewUser.php", "recoveryPassword.php"],
+        "assets":{
+                "css":["style.css"],
+                "img":["imgDefault.png", "imgDefaultSmall.png"],
+                "js":["answerComment.js", "script.js"]
+        }
+    }
+}

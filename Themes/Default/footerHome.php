@@ -1,4 +1,3 @@
-<p id="Essaie"></p>
         <footer class="col s12 center-align">
             <div class="marginTopMin">
                 <address class="col l6 m6 s12">
@@ -45,26 +44,26 @@
                 </div>
             </div>
             <div id="inscription" class="modal">
-                    <div class="modal-content">
-                        <h2 class="center-align">Formulaire d'inscription</h2>
-                        <form name="volunteerIdentity" id="volunteerIdentity" method="POST" action="">
-                            <div class="col s12 input-field">
-                                <input type="text" name="last_name" id="last_name" class="validate" maxlength="255" data-length="255" title="Nom" />
-                                <label for="last_name" class="black-text">Nom</label>
-                            </div>
-                            <div class="marginTop col s12 input-field">
-                                <input type="text" name="first_name" id="first_name" class="validate" maxlength="255" data-length="255" title="Prénom" />
-                                <label for="first_name" class="black-text">Prénom</label>
-                            </div>
-                            <div class="col s12 input-field inline">
-                                <input type="email" name="mail" id="mail" class="validate" maxlength="255" data-length="255" title="Mail" onblur="checkMailUnique()" />
-                                <label for="mail" data-error="Adresse mail faussement écris." data-success="Adresse mail correctement écris." class="black-text">Adresse mail</label>
-                                <span id="errorCheckMailUnique">Cette addresse mail est déjà utilisée.</span>
-                            </div>
-                            <input type="submit" id="submitRegistrer" name="submitRegistrer" class="btn col s6 offset-s3 marginBottomMin" value="Enregistrer le bénévole" title="Enregistrer le bénévole" />
-                        </form>
-                    </div>
+                <div class="modal-content">
+                    <h2 class="center-align">Formulaire d'inscription</h2>
+                    <form name="volunteerIdentity" id="volunteerIdentity" method="POST" action="">
+                        <div class="col s12 input-field">
+                            <input type="text" name="last_name" id="last_name" class="validate" maxlength="255" data-length="255" title="Nom" />
+                            <label for="last_name" class="black-text">Nom</label>
+                        </div>
+                        <div class="marginTop col s12 input-field">
+                            <input type="text" name="first_name" id="first_name" class="validate" maxlength="255" data-length="255" title="Prénom" />
+                            <label for="first_name" class="black-text">Prénom</label>
+                        </div>
+                        <div class="col s12 input-field inline">
+                            <input type="email" name="mail" id="mail" class="validate" maxlength="255" data-length="255" title="Mail" onblur="checkMailUnique()" />
+                            <label for="mail" data-error="Adresse mail faussement écris." data-success="Adresse mail correctement écris." class="black-text">Adresse mail</label>
+                            <span id="errorCheckMailUnique">Cette addresse mail est déjà utilisée.</span>
+                        </div>
+                        <input type="submit" id="submitRegistrer" name="submitRegistrer" class="btn col s6 offset-s3 marginBottomMin" value="Enregistrer le bénévole" title="Enregistrer le bénévole" />
+                    </form>
                 </div>
+            </div>
         </footer>
         <script src="assets/js/answerComment.js" type="text/javascript"></script>
         <!--<script src="assets/js/ajax.js" type="text/javascript"></script>-->

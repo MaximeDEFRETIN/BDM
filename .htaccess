@@ -14,9 +14,14 @@
     Options +FollowSymlinks
     # Active ou désactive la réécriture d'url (on -> active la réécriture)
     RewriteEngine On
+
     ErrorDocument 403 Themes/Default/403.php
     ErrorDocument 404 Themes/Default/404.php
     ErrorDocument 500 Themes/Default/500.php
+    RewriteRule ^403$ Themes/Default/403.php [L]
+    RewriteRule ^404$ Themes/Default/404.php [L]
+    RewriteRule ^500$ Themes/Default/500.php [L]
+
     # Permet la réécriture des pages urls
     RewriteRule ^/$ index.php [L]
     RewriteRule ^Article-page([0-9]+)$ index.php?page=$1 [L]
@@ -51,8 +56,4 @@
     RewriteRule ^Pages$ backOffice/pages.php [L]
     RewriteRule ^Page-profile-([0-9]+)$ backOffice/pages.php?paRea=$1 [L]
     RewriteRule ^Changement-lecture-([0-9]+)$ backOffice/changing.php?upRea=$1 [L]
-
-    RewriteRule ^403$ Themes/Default/403.php [L]
-    RewriteRule ^404$ Themes/Default/404.php [L]
-    RewriteRule ^500$ Themes/Default/500.php [L]
 </IfModule>

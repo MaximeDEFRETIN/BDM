@@ -14,14 +14,13 @@ require_once ($_SERVER['PHP_SELF']=='/index.php')?'controllers/connection-Contro
 require_once ($_SERVER['PHP_SELF']=='/index.php')?'controllers/mailRecoveryPassword-Controller.php':'../../controllers/mailRecoveryPassword-Controller.php';
 require_once ($_SERVER['PHP_SELF']=='/index.php')?'controllers/Home-Controller.php':'../../controllers/Home-Controller.php';
 
-var_dump($_SERVER['SCRIPT_FILENAME']);
-$_SERVER['SCRIPT_FILENAME'] = 'LOLILOL';
+
 var_dump($_SERVER['SCRIPT_FILENAME']);
 var_dump($_SERVER['PHP_SELF']);
 var_dump($_SERVER['DOCUMENT_ROOT']);
 var_dump($_SERVER['REQUEST_URI']);
 //var_dump($_SERVER['PHP_SELF']=='/index.php');
-//
+
 //var_dump(array_values(array_diff(scandir($_SERVER['DOCUMENT_ROOT'].'/Themes/Default'), array('..', '.'))));
 ?>
 <!DOCTYPE html>

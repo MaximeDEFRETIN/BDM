@@ -1,10 +1,10 @@
 {
-    "Nom":"Thème par default",
+    "Nom":"Essaie",
     "Auteur":"Maxime Defretin",
     "Version":"1.0",
     "Date":"08/05/2021",
     "MAJ":"",
-    "Description":"C'est le thème par défaut pour le CMS.",
+    "Description":"Ceci est un test.",
     "Fichiers":{
         "PHP": ["403.php", "404.php", "500.php", "articleHome.php", "footerHome.php", "headerHome.php", "pageHome.php", "passwordNewUser.php", "recoveryPassword.php"],
         "assets":{

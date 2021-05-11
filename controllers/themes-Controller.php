@@ -1,4 +1,4 @@
 <?php
 $getTheme = new themes();
 $useTheme = $getTheme->getThemeHome();
-var_dump($useTheme);
+$arrayValueTheme = array('Nom' => $useTheme->nom, 'Auteur' => $useTheme->auteur, 'Version' => $useTheme->version, 'Date' => $useTheme->date, 'MAJ' => $useTheme->maj);

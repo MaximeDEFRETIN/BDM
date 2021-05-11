@@ -5,8 +5,7 @@ var_dump($pageCourrante);
     $tableauFichier = array_values(array_diff(scandir($_SERVER['DOCUMENT_ROOT'].'/Themes/Default'), array('..', '.')));
     var_dump($tableauFichier);
 //}
-    
-require_once ($_SERVER['PHP_SELF']=='/index.php')?'models/dataBase.php':'../../models/dataBase.php';
+
 require_once ($_SERVER['PHP_SELF']=='/index.php')?'models/user.php':'../../models/user.php';
 require_once ($_SERVER['PHP_SELF']=='/index.php')?'models/pages.php':'../../models/pages.php';
 require_once ($_SERVER['PHP_SELF']=='/index.php')?'models/articles.php':'../../models/articles.php';

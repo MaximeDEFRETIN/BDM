@@ -187,4 +187,3 @@ class task extends dataBase {
         parent::__destruct();
     }
 }
-?>

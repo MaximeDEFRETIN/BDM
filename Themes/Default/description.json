@@ -6,7 +6,7 @@
     "MAJ":"",
     "Description":"C'est le thème par défaut pour le CMS.",
     "Fichiers":{
-        "PHP": ["403.php", "404.php", "500.php", "articleHome.php", "footerHome.php", "headerHome.php", "pageHome.php", "passwordNewUser.php", "recoveryPassword.php"],
+        "PHP": ["403.php", "404.php", "500.php", "articleHome.php", "footerHome.php", "headerHome.php", "pageHome.php", "passwordNewUser.php", "recoveryPassword.php", "accueil", "listeArticles", "listePages"],
         "assets":{
                 "css":["style.css"],
                 "img":["imgDefault.png", "imgDefaultSmall.png"],

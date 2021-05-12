@@ -8,9 +8,9 @@ class user extends dataBase {
     public $mail = '';
     public $status_user = '';
     public $date_signup = '';
-    public $id_agdjjg_status_user = '';
-    public $id_agdjjg_avatar  = '';
-    public $key_user = '';
+    public $id_agdjjg_status_user = 0;
+    public $id_agdjjg_avatar  = 0;
+    public $key_user = 0;
 
     public function __construct() {
         parent::__construct();
@@ -20,12 +20,7 @@ class user extends dataBase {
      * Permet d'ajouter un utilisateur
      */
     public function addUser() {
-        // On insère les un nouvel utilisateur
-        $queryAddUser = 'INSERT INTO `'.self::prefix.'user` (`first_name`, `last_name`, `mail`, `date_signup`, `key_user`, `id_agdjjg_status_user`) '
-                            . 'VALUES (:first_name, :last_name, :mail, CURDATE(), :key_user, (SELECT `id` '
-                                                                                    . 'FROM `'.self::prefix.'status_user` '
-                                                                               . 'WHERE `status_user` = \'Rédacteur\'))';
-        $requestAddUser = $this->db->prepare($queryAddUser);
+        $requestAddUser = $this->db->prepare('INSERT INTO `'.self::prefix.'user` (`first_name`, `last_name`, `mail`, `date_signup`, `key_user`, `id_agdjjg_status_user`) VALUES (:first_name, :last_name, :mail, CURDATE(), :key_user, (SELECT `id` FROM `'.self::prefix.'status_user` WHERE `status_user` = \'Rédacteur\'))');
         // Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur.
         // PDO:: est une constante, 
         $requestAddUser->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
@@ -40,12 +35,8 @@ class user extends dataBase {
      * Permet de savoir si une adresse mail est déjà prise
      */
     public function checkMailUnique() {
-        // On compte le nombre de fois que le mail a été trouvé
-        $queryCheckMail = 'SELECT COUNT(`mail`) AS countMail '
-                          . 'FROM `'.self::prefix.'user`'
-                          . 'WHERE `mail` = :mail';
         // On prépare la requête
-        $checkMailUnique = $this->db->prepare($queryCheckMail);
+        $checkMailUnique = $this->db->prepare('SELECT COUNT(`mail`) AS countMail FROM `'.self::prefix.'user` WHERE `mail` = :mail');
         // Avec bindValue on associe le paramètre à la valeur à la valeur à associer et on indique le type de valeur. PDO:: est une constante
         $checkMailUnique->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         // Si la requête est exécutée
@@ -63,13 +54,8 @@ class user extends dataBase {
      */
     public function getUserByMail() {
         $exists = false;
-        $queryUser = 'SELECT `first_name`, `last_name`, `mail`, `password`, `'.self::prefix.'user`.`id`, `status_user`
-                        FROM `'.self::prefix.'user`
-                      INNER JOIN `'.self::prefix.'status_user`
-                        ON `'.self::prefix.'status_user`.`id` = `'.self::prefix.'user`.`id_agdjjg_status_user`
-                      WHERE `mail` =  :mail';
         // On prépare la requête
-        $requestUser = $this->db->prepare($queryUser);
+        $requestUser = $this->db->prepare('SELECT `first_name`, `last_name`, `mail`, `password`, `'.self::prefix.'user`.`id`, `status_user` FROM `'.self::prefix.'user` INNER JOIN `'.self::prefix.'status_user` ON `'.self::prefix.'status_user`.`id` = `'.self::prefix.'user`.`id_agdjjg_status_user` WHERE `mail` =  :mail');
         // Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur. PDO:: est une constante
         $requestUser->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         // Si la requête est exécutée
@@ -93,10 +79,8 @@ class user extends dataBase {
      * Permet à l'utilisateur de récupérer son mot de passe
      */
     public function replacePassword() {
-        // La requête modifie le mot de passe en fonction de l'adresse mail
-        $query = 'UPDATE `'.self::prefix.'user` SET `password` = :password  WHERE `mail` = :mail';
         // On prépare la requête
-        $requestReplacePassword = $this->db->prepare($query);
+        $requestReplacePassword = $this->db->prepare('UPDATE `'.self::prefix.'user` SET `password` = :password  WHERE `mail` = :mail');
         //Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur.
         //PDO:: est une constante
         $requestReplacePassword->bindValue(':mail', $this->mail, PDO::PARAM_STR);
@@ -109,9 +93,8 @@ class user extends dataBase {
      * Permet de sélectionner la clé de l'utilisateur via son addresse mail lors de la récupération du mot de passe
      */
     public function getKeyByMail() {
-        $queryMail = 'SELECT `key_user` FROM `'.self::prefix.'user` WHERE `mail` = :mail';
         // On prépare la requête
-        $requestGetKey = $this->db->prepare($queryMail);
+        $requestGetKey = $this->db->prepare('SELECT `key_user` FROM `'.self::prefix.'user` WHERE `mail` = :mail');
         //Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur. PDO:: est une constante
         $requestGetKey->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         // Si la méthode est exécutée
@@ -125,10 +108,8 @@ class user extends dataBase {
      * Permet de vérifier l'adresse mail de l'utilisateur lors de la récupération du mot de passe
      */
     public function verifyMailByKey() {
-        // On sélectionne l'adresse mail en fonction de la clé de l'utilisateur
-        $queryKey = 'SELECT `mail` FROM `'.self::prefix.'user` WHERE `key_user` = :key_user';
         // On prépare la requête
-        $requestMail = $this->db->prepare($queryKey);
+        $requestMail = $this->db->prepare('SELECT `mail` FROM `'.self::prefix.'user` WHERE `key_user` = :key_user');
         // Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur. PDO:: est une constante
         $requestMail->bindValue(':key_user', $this->key_user, PDO::PARAM_STR);
         // On éxécute la requête
@@ -139,11 +120,8 @@ class user extends dataBase {
      * Permet à l'utilsiateur de modifier le profil
      */
     public function updateProfile() {
-        // On modifie les informations liées au profil d'un utilisateur en fonction de son id
-        $queryUpdateProfile = 'UPDATE `'.self::prefix.'user` SET `first_name` = :first_name, `last_name` = :last_name, `mail` = :mail '
-                                . 'WHERE `id` = :id';
         // On prépare la requête
-        $requestUpdateProfil = $this->db->prepare($queryUpdateProfile);
+        $requestUpdateProfil = $this->db->prepare('UPDATE `'.self::prefix.'user` SET `first_name` = :first_name, `last_name` = :last_name, `mail` = :mail WHERE `id` = :id');
         //Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur. PDO:: est une constante
         $requestUpdateProfil->bindValue(':id', $this->id, PDO::PARAM_INT);
         $requestUpdateProfil->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
@@ -157,11 +135,8 @@ class user extends dataBase {
      * Permet à l'utilisateur de modifier son mot de passe, grâce à son id
      */
     public function updatePassword() {
-        // On modifie le mot de passe d'un utilisateur en fonction de son id
-        $queryUpdatePassword = 'UPDATE `'.self::prefix.'user` SET `password` = :password '
-                                . 'WHERE `id` = :id';
         // On prépare la requête
-        $requestUpdatePassword = $this->db->prepare($queryUpdatePassword);
+        $requestUpdatePassword = $this->db->prepare('UPDATE `'.self::prefix.'user` SET `password` = :password WHERE `id` = :id');
         // Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur. PDO:: est une constante
         $requestUpdatePassword->bindValue(':password', $this->password, PDO::PARAM_STR);
         $requestUpdatePassword->bindValue(':id', $this->id, PDO::PARAM_INT);
@@ -173,11 +148,8 @@ class user extends dataBase {
      * Permet à l'utilisateur de modifier son mot de passe, grâçe à son adresse mail
      */
     public function updatePasswordByKey() {
-        // On modifie le mot de passe d'un utilisateur en fonction de son id
-        $queryUpdatePassword = 'UPDATE `'.self::prefix.'user` SET `password` = :password '
-                                . 'WHERE `key_user` = :key_user';
         // On prépare la requête
-        $requestUpdatePassword = $this->db->prepare($queryUpdatePassword);
+        $requestUpdatePassword = $this->db->prepare('UPDATE `'.self::prefix.'user` SET `password` = :password WHERE `key_user` = :key_user');
         // Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur. PDO:: est une constante
         $requestUpdatePassword->bindValue(':password', $this->password, PDO::PARAM_STR);
         $requestUpdatePassword->bindValue(':key_user', $this->key_user, PDO::PARAM_INT);
@@ -218,10 +190,8 @@ class user extends dataBase {
      * Permet à un utilisateur de supprimer son profil
      */
     public function deleteProfilById() {
-        // On supprime l'utilisateur en fonction de son id
-        $queryDeleteProfil = 'DELETE FROM `'.self::prefix.'user` WHERE `id` = :id';
         // On prépare la requête
-        $requestDeleteProfil = $this->db->prepare($queryDeleteProfil);
+        $requestDeleteProfil = $this->db->prepare('DELETE FROM `'.self::prefix.'user` WHERE `id` = :id');
         $requestDeleteProfil->bindValue(':id', $this->id, PDO::PARAM_INT);
         // On exécute la requête
         return $requestDeleteProfil->execute();
@@ -231,4 +201,3 @@ class user extends dataBase {
         parent::__destruct();
     }
 }
-?>

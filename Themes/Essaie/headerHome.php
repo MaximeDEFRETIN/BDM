@@ -1,11 +1,16 @@
 <?php
-$pageCourrante = $_SERVER['PHP_SELF'];
-var_dump($pageCourrante);
-//function findPath($pageCourrante) {
-    $tableauFichier = array_values(array_diff(scandir($_SERVER['DOCUMENT_ROOT'].'/Themes/Default'), array('..', '.')));
-    var_dump($tableauFichier);
-//}
+require_once $arrayValueTheme['Prefixe'].'models/user.php';
+require_once $arrayValueTheme['Prefixe'].'models/pages.php';
+require_once $arrayValueTheme['Prefixe'].'models/articles.php';
+require_once $arrayValueTheme['Prefixe'].'controllers/connection-Controller.php';
+require_once $arrayValueTheme['Prefixe'].'controllers/mailRecoveryPassword-Controller.php';
+require_once $arrayValueTheme['Prefixe'].'controllers/Home-Controller.php';
 
+var_dump($_SERVER['SCRIPT_FILENAME']);
+var_dump($_SERVER['PHP_SELF']);
+var_dump($_SERVER['DOCUMENT_ROOT']);
+var_dump($_SERVER['REQUEST_URI']);
+var_dump($_SERVER['PHP_SELF']=='/index.php');
 var_dump($_SERVER['SCRIPT_FILENAME']);
 var_dump($_SERVER['PHP_SELF']);
 var_dump($_SERVER['DOCUMENT_ROOT']);

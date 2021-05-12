@@ -4,8 +4,7 @@ require_once 'headerHome.php';
 require_once '../../models/comment_article.php';
 require_once '../../controllers/articleHome-Controller.php';
 require_once '../../controllers/commentArticle-Controller.php';
-?>
-<?php
+
 $message = array($messageAnswer, $messageComment);
     foreach ($message as $simpleMessage) { ?>
         <p class="center-align "><?= implode($simpleMessage) ?></p>

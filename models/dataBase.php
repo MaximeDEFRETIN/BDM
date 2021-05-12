@@ -14,7 +14,7 @@ class dataBase {
         try {
             $this->db = new PDO('mysql:host=127.0.0.1;dbname=BDM;charset=utf8', 'root', 'AsBc80@0');
         } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
+            die('Erreur : '.$e->getMessage());
         }
     }
             

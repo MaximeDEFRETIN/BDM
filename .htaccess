@@ -15,6 +15,9 @@
     # Active ou désactive la réécriture d'url (on -> active la réécriture)
     RewriteEngine On
 
+#    RewriteLog /CMSlog.log
+#    RewriteLogLevel 4
+
     ErrorDocument 403 Themes/Default/403.php
     ErrorDocument 404 Themes/Default/404.php
     ErrorDocument 500 Themes/Default/500.php
@@ -23,7 +26,7 @@
     RewriteRule ^500$ Themes/Default/500.php [L]
 
     # Permet la réécriture des pages urls
-    RewriteRule ^/$ index.php [L]
+    RewriteRule ^${DOCUMENT_ROOT}$ index.php [L]
     RewriteRule ^Article-page([0-9]+)$ index.php?page=$1 [L]
     RewriteRule ^Nouveau-mdp-([0-9]+)$ Themes/Default/passwordNewUser.php?keyUser=$1 [L]
     RewriteRule ^Recuperation-mdp-([0-9]+)$ Themes/Default/recoveryPassword.php?keyUser=$1 [L]

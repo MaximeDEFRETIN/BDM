@@ -1,13 +1,15 @@
 <?php
-//('../../models/dataBase.php' == false)?'':require_once '../../models/dataBase.php';
-//require_once '../../models/themes.php';
-require_once '../../controllers/themes-Controller.php';
-require_once $_SERVER['Themes']['Prefixe'].'models/user.php';
-require_once $_SERVER['Themes']['Prefixe'].'models/pages.php';
-require_once $_SERVER['Themes']['Prefixe'].'models/articles.php';
-require_once $_SERVER['Themes']['Prefixe'].'controllers/connection-Controller.php';
-require_once $_SERVER['Themes']['Prefixe'].'controllers/mailRecoveryPassword-Controller.php';
-require_once $_SERVER['Themes']['Prefixe'].'controllers/Home-Controller.php';
+$prefixe=($_SERVER['PHP_SELF']!='/index.php')?'../../':'';
+require_once $prefixe.'models/dataBase.php';
+require_once $prefixe.'models/themes.php';
+require_once $prefixe.'controllers/themes-Controller.php';
+
+require_once $prefixe.'models/user.php';
+require_once $prefixe.'models/pages.php';
+require_once $prefixe.'models/articles.php';
+require_once $prefixe.'controllers/connection-Controller.php';
+require_once $prefixe.'controllers/mailRecoveryPassword-Controller.php';
+require_once $prefixe.'controllers/Home-Controller.php';
 
 var_dump($_SERVER['SCRIPT_FILENAME']);
 var_dump($_SERVER['PHP_SELF']);

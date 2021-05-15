@@ -1,10 +1,11 @@
 <?php
-require_once $arrayValueTheme['Prefixe'].'models/user.php';
-require_once $arrayValueTheme['Prefixe'].'models/pages.php';
-require_once $arrayValueTheme['Prefixe'].'models/articles.php';
-require_once $arrayValueTheme['Prefixe'].'controllers/connection-Controller.php';
-require_once $arrayValueTheme['Prefixe'].'controllers/mailRecoveryPassword-Controller.php';
-require_once $arrayValueTheme['Prefixe'].'controllers/Home-Controller.php';
+$prefixe=($_SERVER['PHP_SELF']!='/index.php')?'../../':'';
+require_once $prefixe.'models/user.php';
+require_once $prefixe.'models/pages.php';
+require_once $prefixe.'models/articles.php';
+require_once $prefixe.'controllers/connection-Controller.php';
+require_once $prefixe.'controllers/mailRecoveryPassword-Controller.php';
+require_once $prefixe.'controllers/Home-Controller.php';
 
 var_dump($_SERVER['SCRIPT_FILENAME']);
 var_dump($_SERVER['PHP_SELF']);

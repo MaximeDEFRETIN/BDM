@@ -102,12 +102,12 @@ if (isset($_POST['submitAnswer'])) {
 $displayComment = new comment_article();
 
 // On récupère chaque article en fonction de leur id, pour les afficher
-if (isset($_GET['art'])) {
-    if (filter_var($_GET['art'], FILTER_VALIDATE_INT)) {
-        $displayComment->id_agdjjg_actuality = $_GET['art'];
-        $commentsList = $displayComment->getCommentArticleById(1);
-    } else {
-        header('Location: Profile');
-    }
-}
-?>
+//if (isset($_GET['art'])) {
+//    if (filter_var($_GET['art'], FILTER_VALIDATE_INT)) {
+////        $displayComment->id_agdjjg_actuality = $_GET['art'];
+//        $commentsList = $displayComment->getCommentArticleById(1, $_GET['art']);
+//    } else {
+//        header('Location: Profile');
+//    }
+//}
+(isset($_GET['art']))?(filter_var($_GET['art'], FILTER_VALIDATE_INT))?$commentsList = $displayComment->getCommentArticleById(1, $_GET['art']):header('Location: Profile'):'';

@@ -17,24 +17,14 @@ if (!isset($_GET['paReh']) || $_GET['paReh'] <= 0) {
 // Si il y a bien une variable $_GET['paReh'],
 // on attribut la valeur de $_GET['paReh'] à la variable $page
 } else if (isset($_GET['paReh'])) {
-    if (filter_var($_GET['paReh'], FILTER_VALIDATE_INT)) {
-        $displayReadedBookHome = $getReadedBookHome->getPages($_GET['paReh']);
-    } else {
-        header('Location: /');
-    }
+    (filter_var($_GET['paReh'], FILTER_VALIDATE_INT))?$displayReadedBookHome = $getReadedBookHome->getPages($_GET['paReh']):header('Location: /');
 }
 
 $getReaded = new pages();
 
-// Si un utilisateur cique sur un idRe
+// Si un utilisateur clique sur un idRe
 if (isset($_GET['idRe'])) {
-    if (filter_var($_GET['idRe'], FILTER_VALIDATE_INT)) {
-        // On récupère son id
-        $getReaded->id = $_GET['idRe'];
-
-        // Et on le récupère
-        $displayReaded = $getReaded->getPageById();
-    }
+    (filter_var($_GET['idRe'], FILTER_VALIDATE_INT))?$displayReaded = $getReaded->getPageById($_GET['idRe']):'';
 }
 
 $countArticleHome = new articles();
@@ -46,11 +36,7 @@ $getArticle = new articles();
 if (!isset($_GET['page']) || $_GET['page'] <= 0) {
     $displayArticle = $getArticle->getArticle(0);
 } else if (isset($_GET['page'])) {
-    if (filter_var($_GET['page'], FILTER_VALIDATE_INT)) {
-        $displayArticle = $getArticle->getArticle($_GET['page']);
-    } else {
-        header('Location: /');
-    }
+    (filter_var($_GET['page'], FILTER_VALIDATE_INT))?$displayArticle = $getArticle->getArticle($_GET['page']):header('Location: /');
 }
 
 $inscription = new user();

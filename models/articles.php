@@ -15,11 +15,8 @@ class articles extends dataBase {
      * Permet d'ajouter un article
      */
     public function addArticles() {
-        // On insère les un nouvel utilisateur
-        $queryAddArticles = 'INSERT INTO `'.self::prefix.'articles`(`article`, `title`, `date_articles`, `id_agdjjg_user`) '
-                            . 'VALUES (:article, :title, CURDATE(), :id)';
         // On prépare la requête
-        $requestAddArticles = $this->db->prepare($queryAddArticles);
+        $requestAddArticles = $this->db->prepare('INSERT INTO `'.self::prefix.'articles`(`article`, `title`, `date_articles`, `id_'.self::prefix.'user`) VALUES (:article, :title, CURDATE(), :id)');
         // Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur.
         // PDO:: est une constante
         $requestAddArticles->bindValue(':article', $this->article, PDO::PARAM_STR);
@@ -33,7 +30,7 @@ class articles extends dataBase {
      * Permet de connaitre le nombre d'article écris
      */
     public function countArticle() {
-        $queryCountArticle = 'SELECT COUNT(`id`) AS `idCount` FROM `'.self::prefix.'articles` WHERE `id_agdjjg_user` IS NOT NULL';
+        $queryCountArticle = 'SELECT COUNT(`id`) AS `idCount` FROM `'.self::prefix.'articles` WHERE `id_'.self::prefix.'user` IS NOT NULL';
         // On prépare la requête
         $requestCountArticle = $this->db->prepare($queryCountArticle);
         // Si la requête est exécutée
@@ -50,13 +47,8 @@ class articles extends dataBase {
         $limit = 3;
         $offset = $limit * $page;
 
-        $queryGetArticles = 'SELECT `'.self::prefix.'articles`.`id` AS `id`, `last_name`, `first_name`, `article`,`title`, DATE_FORMAT(`date_article`, "%d/%m/%Y") AS `date_article`, DATE_FORMAT(`updateDate`, "%d/%m/%Y") AS `updateDate` '
-                                . 'FROM `'.self::prefix.'articles` '
-                           . 'INNER JOIN `'.self::prefix.'user` '
-                                . 'ON `'.self::prefix.'user`.`id` = `'.self::prefix.'articles`.`id_agdjjg_user` '
-                           . 'LIMIT '.$limit.' OFFSET '.$offset;
         // On prépare la requête
-        $requestGetArticles = $this->db->prepare($queryGetArticles);
+        $requestGetArticles = $this->db->prepare($queryGetArticles = 'SELECT `'.self::prefix.'articles`.`id` AS `id`, `last_name`, `first_name`, `article`,`title`, DATE_FORMAT(`date_article`, "%d/%m/%Y") AS `date_article`, DATE_FORMAT(`updateDate`, "%d/%m/%Y") AS `updateDate` FROM `'.self::prefix.'articles` INNER JOIN `'.self::prefix.'user` ON `'.self::prefix.'user`.`id` = `'.self::prefix.'articles`.`id_'.self::prefix.'user` LIMIT '.$limit.' OFFSET '.$offset);
         // Si la requête est exécutée
         if ($requestGetArticles->execute()) {
             // Et que la requête est un objet
@@ -70,17 +62,12 @@ class articles extends dataBase {
     /**
      * Permet de récupérer un article par son id pour l'afficher aux visiteurs
      */
-    public function getArticleById() {
-        $queryGetArticle = 'SELECT `'.self::prefix.'articles`.`id` AS `id`, `id_agdjjg_user`, `last_name`, `first_name`, `article`, `title`, DATE_FORMAT(`updateDate`, "%d/%m/%Y") AS `updateDate`, DATE_FORMAT(`date_article`, "%d/%m/%Y") AS `date_article` '
-                            . 'FROM `'.self::prefix.'articles` '
-                         . 'INNER JOIN `'.self::prefix.'user` '
-                                . 'ON `'.self::prefix.'user`.`id` = `'.self::prefix.'articles`.`id_agdjjg_user` '
-                         . 'WHERE `'.self::prefix.'articles`.`id` = :id';
+    public function getArticleById($id) {
         // On prépare la requête
-        $requestGetArticle = $this->db->prepare($queryGetArticle);
+        $requestGetArticle = $this->db->prepare('SELECT `'.self::prefix.'articles`.`id` AS `id`, `id_'.self::prefix.'user`, `last_name`, `first_name`, `article`, `title`, DATE_FORMAT(`updateDate`, "%d/%m/%Y") AS `updateDate`, DATE_FORMAT(`date_article`, "%d/%m/%Y") AS `date_article` FROM `agdjjg_articles` INNER JOIN `'.self::prefix.'user` ON `'.self::prefix.'user`.`id` = `'.self::prefix.'articles`.`id_'.self::prefix.'user` WHERE `'.self::prefix.'articles`.`id` = '.$id);
         // Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur.
         // PDO:: est une constante
-        $requestGetArticle->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $requestGetArticle->bindValue($id, $this->id, PDO::PARAM_INT);
         // Si la requête est exécutée
         if ($requestGetArticle->execute()) {
             // Et que la requête est un objet
@@ -95,11 +82,8 @@ class articles extends dataBase {
      * Permet de modifier un article
      */
     public function updateArticleById() {
-        $queryUpdateArticle = 'UPDATE `'.self::prefix.'Articles` '
-                                . 'SET `article`= :article,`title`= :title, `updateDate`= CURDATE()'
-                            . 'WHERE `id` = :id';
         // On prépare la requête
-        $requestUpdateArticle = $this->db->prepare($queryUpdateArticle);
+        $requestUpdateArticle = $this->db->prepare('UPDATE `'.self::prefix.'Articles` SET `article`= :article,`title`= :title, `updateDate`= CURDATE() WHERE `id` = :id');
         // Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur.
         // PDO:: est une constante
         $requestUpdateArticle->bindValue(':id', $this->id, PDO::PARAM_INT);

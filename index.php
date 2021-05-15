@@ -1,6 +1,6 @@
 <?php
-//require_once 'models/dataBase.php';
-//require_once 'models/themes.php';
+require_once 'models/dataBase.php';
+require_once 'models/themes.php';
 require_once 'controllers/themes-Controller.php';
 
 require_once 'Themes/'.$_SERVER['Themes']['Nom'].'/headerHome.php';

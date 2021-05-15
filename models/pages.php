@@ -8,10 +8,7 @@ class pages extends dataBase {
     public $id_agdjjg_user = 0;
     
     public function addPage() {
-        // On insère la descecription d'un livre lu
-        $queryAddReaded = 'INSERT INTO `'.self::prefix.'pages`(`title`, `texte_page`, `date_edited`, `id_agdjjg_user`) '
-                            . 'VALUES (:title, :texte_page, CURDATE(), (SELECT `id` FROM `'.self::prefix.'user` WHERE `mail` = :mail))';
-        $requestAddReaded = $this->db->prepare($queryAddReaded);
+        $requestAddReaded = $this->db->prepare('INSERT INTO `'.self::prefix.'pages`(`title`, `texte_page`, `date_edited`, `id_'.self::prefix.'user`) VALUES (:title, :texte_page, CURDATE(), (SELECT `id` FROM `'.self::prefix.'user` WHERE `mail` = :mail))');
         //Avec bindValue, on associe le paramètre à la valeur à associer et on indique le type de valeur. PDO:: est une constante
         $requestAddReaded->bindValue(':title', $this->title, PDO::PARAM_STR);
         $requestAddReaded->bindValue(':texte_page', $this->texte_page, PDO::PARAM_STR);
@@ -24,10 +21,8 @@ class pages extends dataBase {
      * Permet de connaitre le nombre d'article écris
      */
     public function countPages() {
-        // On compte le nombre de description de livre
-        $queryCountReaded = 'SELECT COUNT(`id`) AS `id_count` FROM `'.self::prefix.'pages` WHERE `id_agdjjg_user` IS NOT NULL';
         // On prépare la requête
-        $requestCountReaded = $this->db->prepare($queryCountReaded);
+        $requestCountReaded = $this->db->prepare('SELECT COUNT(`id`) AS `id_count` FROM `'.self::prefix.'pages` WHERE `id_'.self::prefix.'user` IS NOT NULL');
         // Si la requête est exécutée
         if ($requestCountReaded->execute()) {
             // On retourne le résultat
@@ -36,19 +31,14 @@ class pages extends dataBase {
     }
     
     /**
-     * Permet de récupérer toutes les descriptions de livre
+     * Permet de récupérer une page
      */
     public function getPages($page) {
         $limit = 3;
         $offset = $limit * $page;
     
-        $queryGetOpinion = 'SELECT `'.self::prefix.'pages`.`id` AS `id`, `title`, `first_name`, `last_name`, `texte_page`, DATE_FORMAT(`updateDate`, "%d/%m/%Y") AS `updateDate`, `id_agdjjg_user`, DATE_FORMAT(`date_edited`, "%d/%m/%Y") AS `date_edited` '
-                                . 'FROM `'.self::prefix.'pages` '
-                         . 'INNER JOIN `'.self::prefix.'user` '
-                                . 'ON `'.self::prefix.'user`.`id` = `'.self::prefix.'pages`.`id_agdjjg_user` '
-                         . 'LIMIT '.$limit.' OFFSET '.$offset;
         // On prépare la requête
-        $requestGetOpinion = $this->db->prepare($queryGetOpinion);
+        $requestGetOpinion = $this->db->prepare('SELECT `'.self::prefix.'pages`.`id` AS `id`, `title`, `first_name`, `last_name`, `texte_page`, DATE_FORMAT(`updateDate`, "%d/%m/%Y") AS `updateDate`, `id_'.self::prefix.'user`, DATE_FORMAT(`date_edited`, "%d/%m/%Y") AS `date_edited` FROM `'.self::prefix.'pages` INNER JOIN `'.self::prefix.'user` ON `'.self::prefix.'user`.`id` = `'.self::prefix.'pages`.`id_'.self::prefix.'user` LIMIT '.$limit.' OFFSET '.$offset);
         // Si la requête est exécutée
         if ($requestGetOpinion->execute()) {
             // Et que la requête est un objet
@@ -62,17 +52,12 @@ class pages extends dataBase {
     /**
      * Permet de sélectionner une description d'un livre en fonction de son id
      */
-    public function getPageById() {
-        $queryGetReaded = 'SELECT `title`, `first_name`, `last_name`, `texte_page`, DATE_FORMAT(`date_edited`, "%d/%m/%Y") AS `date_edited`, DATE_FORMAT(`updateDate`, "%d/%m/%Y") AS `updateDate` '
-                                . 'FROM `'.self::prefix.'pages` '
-                         . 'INNER JOIN `'.self::prefix.'user` '
-                                . 'ON `'.self::prefix.'user`.`id` = `'.self::prefix.'pages`.`id_agdjjg_user` '
-                         . 'WHERE `'.self::prefix.'pages`.`id` = :id';
+    public function getPageById($id) {
         // On prépare la requête
-        $requestGetReaded = $this->db->prepare($queryGetReaded);
+        $requestGetReaded = $this->db->prepare('SELECT `title`, `first_name`, `last_name`, `texte_page`, DATE_FORMAT(`date_edited`, "%d/%m/%Y") AS `date_edited`, DATE_FORMAT(`updateDate`, "%d/%m/%Y") AS `updateDate` FROM `'.self::prefix.'pages` INNER JOIN `'.self::prefix.'user` ON `'.self::prefix.'user`.`id` = `'.self::prefix.'pages`.`id_'.self::prefix.'user` WHERE `'.self::prefix.'pages`.`id` = '.$id);
         // Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur.
         // PDO:: est une constante
-        $requestGetReaded->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $requestGetReaded->bindValue($id, $this->id, PDO::PARAM_INT);
         // Si la requête est exécutée
         if ($requestGetReaded->execute()) {
             // Et que la requête est un objet
@@ -88,10 +73,8 @@ class pages extends dataBase {
      */
     public function updatePage() {
         // On modifie les informations liées au profil d'un utilisateur en fonction de son id
-        $queryUpdateReadedBook = 'UPDATE `'.self::prefix.'pages` SET `title` = :title, `texte_page` = :texte_page, `updateDate` = CURDATE() '
-                                . 'WHERE `id` = :id';
         // On prépare la requête
-        $requestUpdateProfil = $this->db->prepare($queryUpdateReadedBook);
+        $requestUpdateProfil = $this->db->prepare('UPDATE `'.self::prefix.'pages` SET `title` = :title, `texte_page` = :texte_page, `updateDate` = CURDATE() WHERE `id` = :id');
         // Avec bindValue on associe le paramètre à la valeur à associer et on indique le type de valeur. PDO:: est une constante
         $requestUpdateProfil->bindValue(':id', $this->id, PDO::PARAM_INT);
         $requestUpdateProfil->bindValue(':title', $this->title, PDO::PARAM_STR);

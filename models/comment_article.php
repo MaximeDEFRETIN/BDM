@@ -35,15 +35,10 @@ class comment_article extends dataBase {
     /**
      * Permet de récupérer les commentaires d'un article
      */
-    public function getCommentArticleById($valid) {
-        $queryGetComment = 'SELECT `comment_article`, `'.self::prefix.'articles`.`title` AS `title_article`, DATE_FORMAT(`date_comment`, "%d/%m/%Y") AS `date_comment`, `author`, `'.self::prefix.'article_comment_visitor`.`id` AS `id`, `id_answer_comment`'
-                                .'FROM `'.self::prefix.'article_comment_visitor` '
-                         .'INNER JOIN `'.self::prefix.'articles` '
-                                . 'ON `'.self::prefix.'articles`.`id` = `'.self::prefix.'article_comment_visitor`.`id_agdjjg_article`'
-                         .'WHERE `id_agdjjg_article` = :id_agdjjg_article  AND `validated` = '.$valid;
+    public function getCommentArticleById($valid, $article) {
         // On prépare la requête
-        $requestGetComment = $this->db->prepare($queryGetComment);
-        $requestGetComment->bindValue(':id_agdjjg_article', $this->id_agdjjg_article, PDO::PARAM_INT);
+        $requestGetComment = $this->db->prepare('SELECT `comment_article`, `'.self::prefix.'articles`.`title` AS `title_article`, DATE_FORMAT(`date_comment`, "%d/%m/%Y") AS `date_comment`, `author`, `'.self::prefix.'article_comment_visitor`.`id` AS `id`, `id_answer_comment` FROM `'.self::prefix.'article_comment_visitor` INNER JOIN `'.self::prefix.'articles` ON `'.self::prefix.'articles`.`id` = `'.self::prefix.'article_comment_visitor`.`id_agdjjg_article` WHERE `id_agdjjg_article` = '.$article.'  AND `validated` = '.$valid);
+        $requestGetComment->bindValue($article, $this->id_agdjjg_article, PDO::PARAM_INT);
         // Si la requête est exécutée
         if ($requestGetComment->execute()) {
             // Et que la requête est un objet

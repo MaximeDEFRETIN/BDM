@@ -8,8 +8,8 @@ class user extends dataBase {
     public $mail = '';
     public $status_user = '';
     public $date_signup = '';
+    public $pathAvatar = '';
     public $id_agdjjg_status_user = 0;
-    public $id_agdjjg_avatar  = 0;
     public $key_user = 0;
 
     public function __construct() {
@@ -29,6 +29,18 @@ class user extends dataBase {
         $requestAddUser->bindValue(':key_user', $this->key_user, PDO::PARAM_INT);
         // On éxécute la requête
         return $requestAddUser->execute();
+    }
+    
+    /*
+     * Permet d'inserer une image dans la base de donnée
+     */
+    public function setAvatar($path_avatar, $id) {
+        $requestInsertAvatar = $this->db->prepare('UPDATE `'.self::prefix.'user` SET `pathAvatar`='.$path_avatar.'WHERE `id`= '.$id);
+        var_dump($requestInsertAvatar);
+        $requestInsertAvatar->bindValue($path_avatar, $this->path_avatar, PDO::PARAM_STR);
+        $requestInsertAvatar->bindValue($id, $this->id, PDO::PARAM_INT);
+        $requestInsertAvatar->execute();
+        var_dump($requestInsertAvatar->execute());
     }
     
     /**
@@ -72,6 +84,21 @@ class user extends dataBase {
                     return $exists = true;
                 }
             }
+        }
+    }
+    
+    /*
+     * Permet de récupérer l'avatar de l'utilisateur
+     */
+    public function getAvatarById($id) {
+        // On prépare la requête
+        $avatar = $this->db->prepare('SELECT `pathAvatar` FROM `'.self::prefix.'user` WHERE `id`='.$id);
+        // On attribut l'id de l'utilisateur à idUser
+        $avatar->bindValue($id, $this->id, PDO::PARAM_INT);
+        // Si la requête est exécuté
+        if($avatar->execute()) {
+            //On attribut les résultats de la requête à la variable $partitionList
+            return $avatarDisplayed = $avatar->fetch(PDO::FETCH_OBJ);
         }
     }
     
@@ -195,6 +222,20 @@ class user extends dataBase {
         $requestDeleteProfil->bindValue(':id', $this->id, PDO::PARAM_INT);
         // On exécute la requête
         return $requestDeleteProfil->execute();
+    }
+    
+    /* 
+     * Permet de supprimer un avatar
+     */
+    public function deleteAvatarById() {
+        // On supprime l'avatar de l'utilisateur en fonction de id_agdjjg_user
+        $queryDeleteAvatar = 'DELETE FROM `'.self::prefix.'avatar` WHERE `id_agdjjg_user` = :id';
+        // On prépare la requête
+        $requestDeleteAvatar = $this->db->prepare($queryDeleteAvatar);
+        // On attribut l'id de l'utilisateur à id_agdjjg_user
+        $requestDeleteAvatar->bindValue(':id', $this->id, PDO::PARAM_INT);
+        // On renvoie le résultats
+        return $requestDeleteAvatar->execute();
     }
     
     public function __destruct() {

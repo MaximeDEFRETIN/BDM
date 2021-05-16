@@ -1,6 +1,6 @@
 <?php
 // On instancie un objet
-$userAvatar = new avatar();
+$userAvatar = new user();
 
 // On crée un tableau contenant tous les messages destiné aux utilisateurs
 $messageAvatar = array();
@@ -10,8 +10,7 @@ if (isset($_POST['newAvatar'])) {
     if (!empty($_FILES['avatarFile']['name']) && $_FILES['avatarFile']['error'] == 0) {
             // On vérifie que e fichier ne dépasse pas une limite autorisée
             if ($_FILES['avatarFile']['size'] <= 5000000) {
-                $userAvatar->id_agdjjg_user = $_SESSION['id'];
-                
+                var_dump($_FILES['avatarFile']);
                 // On récupère les infos sur le fichier
                 $fileType = pathinfo($_FILES['avatarFile']['name']);
                 $extension_upload = $fileType['extension'];
@@ -22,19 +21,19 @@ if (isset($_POST['newAvatar'])) {
                 if (in_array($extension_upload, $extensions_autorisees)) {
                     if (in_array($contentType, $contentType_autorisees)) {
                         // On crée un dossier pour l'urtilisateur si il n'existe pas
-                        if (!file_exists('backOffice/avatar/'.$_SESSION['id'])) {
-                            mkdir('backOffice/avatar/'.$_SESSION['id'], 0760, true);
-                        }
+//                        if (!file_exists('document/'.$_SESSION['id'])) {
+//                            mkdir('document/'.$_SESSION['id'], 0760, true);
+//                        }
                         // On déplace le fichier
-                        move_uploaded_file($_FILES['avatarFile']['tmp_name'], '../backOffice/avatar/'.$_SESSION['id'].'/'.$_FILES['avatarFile']['name']);
-                        // On change ses droits
-                        chmod('../backOffice/avatar/' . $_SESSION['id'].'/'.$_FILES['avatarFile']['name'], 0660);
+                        $path = '../document/image/'.$_FILES['avatarFile']['name'];
+                        move_uploaded_file($_FILES['avatarFile']['tmp_name'], $path);
+                        chmod($path, 0660);
                         // On récupère l'id de l'utilisateur pour l'associer au chemin du fichier et l'inséré dans la base de donnée
-                        $userAvatar->id = $_SESSION['id'];
-                        $userAvatar->path_avatar = '../backOffice/avatar/'.$_SESSION['id'].'/'.$_FILES['avatarFile']['name'];
-                        $userAvatar->insertAvatar();
+//                        $userAvatar->id = $_SESSION['id'];
+//                        $userAvatar->path_avatar = '../backOffice/avatar/'.$_SESSION['id'].'/'.$_FILES['avatarFile']['name'];
+                        $userAvatar->setAvatar('\''.$path.'\'', $_SESSION['id']);
                         $messageAvatar['succes'] = 'Envoie effectué';
-                        header('refresh:5; url=Modification-profile');
+                        header('refresh:555; url=Modification-profile');
                     } else {
                         $messageAvatar['contentFile'] = 'Le contenu du fichier n\'est pas autorisée.';
                     }
@@ -51,7 +50,7 @@ if (isset($_POST['newAvatar'])) {
 
 
 // On crée un objet
-$deleteAvatar = new avatar();
+$deleteAvatar = new user();
 
 // Si on clique sur le boutton
 if (isset($_POST['deleteAvatar'])) {

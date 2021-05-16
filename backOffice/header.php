@@ -20,10 +20,7 @@ $_SESSION['LAST_ACTIVITY'] = $_SERVER['REQUEST_TIME'];
 // On inclus les models et les contrôleurs
 require_once '../models/dataBase.php';
 require_once '../models/user.php';
-require_once '../models/avatar.php';
-require_once '../models/task.php';
 require_once '../models/articles.php';
-require_once '../models/event_association.php';
 require_once '../models/comment_article.php';
 require_once '../models/pages.php';
 require_once '../controllers/displayedAvatar-Controller.php';
@@ -45,7 +42,7 @@ require_once '../controllers/displayedAvatar-Controller.php';
         <header>
             <nav role = "navigation" class="valign-wrapper">
                 <div class="col s2 valign-wrapper">
-                    <img src="<?= (isset($avatarDisplayed->path_avatar)?$avatarDisplayed->path_avatar:"assets/img/imgDefaultSmall.png") ?>"  height="50" width="50" class="circle responsive-img" id="avatarHeader" title="Avatar" alt="Avatar de <?= $_SESSION['first_name'] . " " . $_SESSION['last_name'] ?>" />
+                    <img src="<?= (isset($avatarDisplayed->pathAvatar)?$avatarDisplayed->pathAvatar:"assets/img/imgDefaultSmall.png") ?>"  height="50" width="50" class="circle responsive-img" id="avatarHeader" title="Avatar" alt="Avatar de <?= $_SESSION['first_name'] . " " . $_SESSION['last_name'] ?>" />
                     <p><?= $_SESSION['first_name'].' '.$_SESSION['last_name'] ?></p>
                 </div>
                 <p class="col s2 offset-s4 center-align" title="Profile"><a href="Profile">Profile</a></p>

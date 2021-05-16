@@ -65,5 +65,6 @@ if (!empty($messagePage)) { ?>
             </div>
         </div>
     </div>
+    <div class="fixed-action-btn"><a class="btn col s12 center-align" href="Profile">Profile</a></div>
 </div>
 <?php require_once 'footer.php';

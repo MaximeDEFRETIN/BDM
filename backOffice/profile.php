@@ -6,15 +6,13 @@ require_once '../controllers/user-Controller.php';
 if (!empty($messageUser)) { ?>
     <p class="center-align "><?= implode($messageUser) ?></p>
 <?php } ?>
-    <div class="col s6 offset-s6 marginTopMin" role="navigation">
+    <div class="col s3 offset-s9 marginTopMin" role="navigation">
         <a class="col s3" href="Articles">Articles</a>
         <a class="col s3" href="Pages">Pages</a>
-        <a class="col s3" href="Taches">Tâches</a>
-        <a class="col s3" href="Evennements">Évennements</a>
     </div>
-<?php if ($_SESSION['status_user'] !== 'Bénévole') { ?>
+<?php if ($_SESSION['status_user'] !== 'Rédacteur') { ?>
     <div class="row marginTopMin">
-        <?php if ($_SESSION['status_user'] === 'Président') { ?>
+        <?php if ($_SESSION['status_user'] === 'Administrateur') { ?>
             <div class="col s10 offset-s1">
                 <button data-target="volunteerRegistration" class="btn modal-trigger col s10 offset-s1 marginTopMin" title="Ajouter un bénévole">Ajouter un bénévole</button>
                 <div id="volunteerRegistration" class="modal">

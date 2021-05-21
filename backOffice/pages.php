@@ -29,7 +29,7 @@ if (!empty($messagePage)) { ?>
                         <td class="justify"><time datetime="<?= $display->date_edited ?>"><?= $display->date_edited ?></time></td>
                         <td class="justify"><time datetime="<?= $display->updateDate ?>"><?= $display->updateDate ?></time></td>
                         <?php if ($display->id_agdjjg_user === $_SESSION['id']) { ?>
-                            <td><a href="Changement-lecture-<?= $display->id ?>" class="btn col s12" title="Changer la description du livre"><i class="small material-icons">error</i></a></td>
+                            <td><a href="Changement-page-<?= $display->id ?>" class="btn col s12" title="Changer la description du livre"><i class="small material-icons">error</i></a></td>
                             <td><a href="../backOffice/pages.php?delRea=<?= $display->id ?>" class="btn col s12" title="Supprimer la description du livre"><i class="small material-icons">close</i></a></td>
                         <?php } ?>
                     </tr>

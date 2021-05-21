@@ -37,18 +37,6 @@
     RewriteRule ^Modification-profile$ backOffice/updateProfile.php [L]
     RewriteRule ^Profile$ backOffice/profile.php [L]
     RewriteRule ^Profile-status-(['A-Za-zé']+)-utilisateur-([0-9]+)$ backOffice/profile.php?upUs=$1&idUs=$2 [L]
-    #Tâches
-    RewriteRule ^Taches$ backOffice/taches.php [L]
-    RewriteRule ^Ajout-Volontaire-Tache-([0-9]+)$ backOffice/taches.php?addVo=$1 [L]
-    RewriteRule ^Modification-status-tache-([0-9]+)$ backOffice/taches.php?upStatus=$1 [L]
-    RewriteRule ^Desistement-([0-9]+)$ backOffice/taches.php?idTas=$1 [L]
-    RewriteRule ^Changement-tache-([0-9]+)$ backOffice/changing.php?upTas=$1 [L]
-    #Évennements
-    RewriteRule ^Evennements$ backOffice/evennements.php [L]
-    RewriteRule ^Profile-ajout-participant-([0-9]+)$ backOffice/evennements.php?addPar=$1 [L]
-    RewriteRule ^Desistement-evennements-([0-9]+)$ backOffice/evennements.php?idEvent=$1 [L]
-    RewriteRule ^Changement-evenement-([0-9]+)$ backOffice/changing.php?upEv=$1 [L]
-    RewriteRule ^Changement-evenement-([0-9]+)-fichier-(['A-Za-z0-9ÉÈÀÊÀÙÎÏÜËéèàêâùïüë\-_.()\ ']+)$ backOffice/changing.php?upEv=$1&path=$2 [L]
     #Articles
     RewriteRule ^Articles$ backOffice/articles.php [L]
     RewriteRule ^Suppression-actualite-([0-9]+)$ backOffice/articles.php?delAct=$1 [L]
@@ -58,5 +46,9 @@
     #Pages
     RewriteRule ^Pages$ backOffice/pages.php [L]
     RewriteRule ^Page-profile-([0-9]+)$ backOffice/pages.php?paRea=$1 [L]
-    RewriteRule ^Changement-lecture-([0-9]+)$ backOffice/changing.php?upRea=$1 [L]
+    RewriteRule ^Changement-page-([0-9]+)$ backOffice/changing.php?upRea=$1 [L]
+    #Catégories
+    RewriteRule ^Categorie$ backOffice/categorie.php [L]
+#    RewriteRule ^Page-profile-([0-9]+)$ backOffice/pages.php?paRea=$1 [L]
+#    RewriteRule ^Changement-lecture-([0-9]+)$ backOffice/changing.php?upRea=$1 [L]
 </IfModule>

@@ -24,7 +24,6 @@ if (isset($_POST['submitUpDescription'])) {
 if (isset($_GET['upRea'])) {
     if (filter_var($_GET['upRea'], FILTER_VALIDATE_INT)) {
         $getPage = new pages();
-        $getPage->id= $_GET['upRea'];
-        $displayGetPage = $getPage->getPageById();
+        $displayGetPage = $getPage->getPageById($_GET['upRea']);
     }
 }

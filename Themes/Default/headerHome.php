@@ -27,7 +27,8 @@ var_dump($_SERVER['PHP_SELF']=='/index.php');
         <meta name="description" content="Site de l'association Bibliothèque des Malades" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.css" type="text/css" />
-        <script src="bower_components/jQuery/dist/jquery.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.css" type="text/css" />
+        <script src="bower_components/vue/dist/vuejs.min.js" type="text/javascript"></script>
         <script src="assets/js/script.js" type="text/javascript"></script>
         <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
         <title>Bibliothèque des Malades</title>

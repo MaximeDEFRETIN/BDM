@@ -6,7 +6,7 @@ require_once '../controllers/changingPage-Controller.php';
 ?>
 <h1 class="center-align">Modifications</h1>
 <?php 
-$messageUpdate = array($messageUpPage, $messageChangingActuality, $messageChangingTask, $messageChangingEvent);
+$messageUpdate = array($messageUpPage, $messageChangingActuality);
 foreach ($messageUpdate as $simpleMessage) { ?>
     <p class="center-align"><?= implode($simpleMessage) ?></p>
 <?php }
@@ -29,16 +29,16 @@ if (isset($_GET['chanArt'])) {
      foreach ($displayGetPage as $display) { ?>
     <h2 class="center-align">Page -> <?= $display->title ?></h2>
     <form method="POST">
-        <div class="input-field col s12">
+        <div class="input-field col s8 offset-s2">
             <input type="text" id="upTitle" name="upTitle" class="validate" maxlength="25" data-length="25" title="Titre" value="<?= $display->title ?>" />
             <label for="upTitle" class="black-text">Titre de la page</label>
         </div>
-        <div class="input-field col s12">
+        <div class="input-field col s8 offset-s2">
             <textarea id="upDescriptionBook" name="upDescriptionBook" class="col s12 materialize-textarea" title="Zone de texte"><?= $display->texte_page ?></textarea>
             <label for="upDescriptionBook" class="black-text">Description de la page</label>
         </div>
         <input type="submit" id="submitUpDescription" name="submitUpDescription" class="btn col s6 offset-s3 marginBottomMin" value="Écrire" title="Envoie la description" />
     </form>
-    <a class="col s3 offset-s9" href="Pages">Pages</a>
+    <span class="fixed-action-btn"><a class="btn col s12" href="Pages">Pages</a></span>
 <?php } } ?>
 <?php require_once 'footer.php' ?>

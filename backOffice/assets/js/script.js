@@ -10,6 +10,6 @@ $(document).ready(function () {
         closeOnSelect: false,
         container: undefined,
         format: 'dd/mm/yyyy',
-  });
-  $('select').material_select();
+    });
+    $('select').material_select();
 });

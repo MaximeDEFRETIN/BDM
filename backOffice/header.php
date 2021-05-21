@@ -23,6 +23,7 @@ require_once '../models/user.php';
 require_once '../models/articles.php';
 require_once '../models/comment_article.php';
 require_once '../models/pages.php';
+require_once '../models/categorie.php';
 require_once '../controllers/displayedAvatar-Controller.php';
 ?>
 <!DOCTYPE html>
@@ -31,8 +32,10 @@ require_once '../controllers/displayedAvatar-Controller.php';
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="../bower_components/materialize/dist/css/materialize.css" type="text/css" />
+        <link rel="stylesheet" href="../../bower_components/materialize/dist/css/materialize.css" type="text/css" />
         <script src="../bower_components/jQuery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="../../bower_components/vue/dist/vue.min.js" type="text/javascript"></script>
+        <script src="../../bower_components/vuex/dist/vuex.min.js" type="text/javascript"></script>
         <script src="../backOffice/assets/js/checkMailUnique.js" type="text/javascript"></script>
         <script src="../backOffice/assets/js/script.js" type="text/javascript"></script>
         <link rel="stylesheet" href="assets/css/style.css" />
